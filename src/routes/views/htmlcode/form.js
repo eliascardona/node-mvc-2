@@ -36,9 +36,10 @@ const machineHTMLForm = `
 		</form>
 	</div>
 	<script defer>
-		async function createMachine(payload) {
+		async function postCallback(url, method, payload) {
 			try {
-				const r = await fetch('http://127.0.0.1/manufactory/machines/create', {
+				const r = await fetch(url, {
+					method: method,
 					headers: {
 						'Content-Type': 'application/json',
 					},
@@ -59,7 +60,11 @@ const machineHTMLForm = `
 				maq_id: e.target.maq_id.value,
 				descripcion: e.target.descripcion.value,
 			}
-			await createMachine()
+			await postCallback(
+				'http://127.0.0.1:8080/manufactory/machines/create',
+				'POST',
+				temp
+			)
 		})
 	</script>
 </body>
@@ -94,7 +99,7 @@ const productHTMLForm = `
 <body>
 	<div class="content">
 		<form id="form">
-			<input type="text" name="maq_id" placeholder="maq_id">
+			<input type="text" name="prod_id" placeholder="prod_id">
 			<input type="text" name="descripcion" placeholder="descripcion">
 			<button 
 				type="submit"
@@ -104,9 +109,10 @@ const productHTMLForm = `
 		</form>
 	</div>
 	<script defer>
-		async function createProd(payload) {
+		async function postCallback(url, method, payload) {
 			try {
-				const r = await fetch('http://127.0.0.1/manufactory/products/create', {
+				const r = await fetch(url, {
+					method: method,
 					headers: {
 						'Content-Type': 'application/json',
 					},
@@ -124,10 +130,14 @@ const productHTMLForm = `
 		formEl.addEventListener('submit', async (e) => {
 			e.preventDefault()
 			const temp = {
-				maq_id: e.target.maq_id.value,
+				prod_id: e.target.prod_id.value,
 				descripcion: e.target.descripcion.value,
 			}
-			await createProd(temp)
+			await postCallback(
+				'http://127.0.0.1:8080/manufactory/products/create',
+				'POST',
+				temp
+			)
 		})
 	</script>
 </body>

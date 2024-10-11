@@ -17,7 +17,7 @@ const createProduct = async (descripcion) => {
 
 
 const getProductAll = async () => {
-    const sql = 'SELECT maq_id, descripcion FROM producto'
+    const sql = 'SELECT * FROM producto'
 
     try {
         const result = await pool.query(
@@ -33,7 +33,7 @@ const getProductAll = async () => {
 
 const getProductById = async (id) => {
     const queryParams = [id]
-    const sql = 'SELECT * FROM producto WHERE maq_id = $1'
+    const sql = 'SELECT * FROM producto WHERE prod_id = $1'
 
     try {
         const result = await pool.query(
@@ -49,7 +49,7 @@ const getProductById = async (id) => {
 
 const updateProduct = async (maq_id, descripcion) => {
     const values = [maq_id, descripcion]
-    const sql = 'UPDATE producto SET descripcion = $2, WHERE maq_id = $1'
+    const sql = 'UPDATE producto SET descripcion = $2, WHERE prod_id = $1'
 
     try {
         const result = await pool.query(
@@ -65,7 +65,7 @@ const updateProduct = async (maq_id, descripcion) => {
 
 const deleteProduct = async (id) => {
     const deletionId = [id]
-    const sql = 'DELETE FROM pelicula WHERE pelicula_id = $1'
+    const sql = 'DELETE FROM producto WHERE prod_id = $1'
 
     try {
         const result = await pool.query(

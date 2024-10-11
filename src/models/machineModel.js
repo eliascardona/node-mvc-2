@@ -65,7 +65,7 @@ const updateMachine = async (maq_id, descripcion) => {
 
 const deleteMachine = async (id) => {
     const deletionId = [id]
-    const sql = 'DELETE FROM pelicula WHERE pelicula_id = $1'
+    const sql = 'DELETE FROM maquina WHERE maq_id = $1'
 
     try {
         const result = await pool.query(
